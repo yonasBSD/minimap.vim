@@ -853,6 +853,9 @@ function! s:source_win_enter() abort
 endfunction
 
 function! s:minimap_buffer_enter_handler() abort
+    if empty(s:last_pos) || s:last_pos <= 0
+        return
+    endif
     " Move the cursor to where we were in the main buffer. Without this it
     " jumps to the top of the minimap
     call cursor(s:last_pos, 1)
